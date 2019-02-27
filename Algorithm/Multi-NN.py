@@ -89,8 +89,8 @@ if __name__ == '__main__':
 	n_inputs = 5  # 代表每个特征有多少维
 	n_hidden_units = 8 * n_inputs  # 假设隐藏单元有128个
 	n_classes = 3  # 二分类
-	is_train = True
-	web_name = 'sina-100k'
+	is_train = False
+	web_name = 'sina-Tenary'
 
 	x = tf.placeholder(tf.float32, [None, n_inputs])
 	y = tf.placeholder(tf.float32, [None, n_classes])
