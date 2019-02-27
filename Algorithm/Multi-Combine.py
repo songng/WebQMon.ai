@@ -111,7 +111,7 @@ if __name__ == '__main__':
     os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
     is_train = False
     # 读取数据
-    web_name = 'sina-Tenary'
+    web_name = 'sina-Ternary'
     file_dir = './TrainingData/%s' % web_name
     filename_list = file_name_list(file_dir)
     df = data_merge(file_dir, filename_list)

@@ -87,7 +87,7 @@ def RNN(X, weights, biases):
 if __name__ == '__main__':
     os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
     # RNN各种参数定义
-    web_name = 'sina-Tenary'
+    web_name = 'sina-Ternary'
     is_train = False
     lr = 0.001 # 学习速率
     training_iters = 100000  # 循环次数

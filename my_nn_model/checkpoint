@@ -1,2 +1,2 @@
-model_checkpoint_path: "my_multi_nn_model_sina-Tenary"
-all_model_checkpoint_paths: "my_multi_nn_model_sina-Tenary"
+model_checkpoint_path: "my_multi_nn_model_sina-Ternary"
+all_model_checkpoint_paths: "my_multi_nn_model_sina-Ternary"
