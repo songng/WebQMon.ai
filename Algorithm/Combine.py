@@ -102,7 +102,7 @@ if __name__ == '__main__':
     os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
     is_train = False
     # read data
-    web_name = 'sina'
+    web_name = 'amazon'
     file_dir = './TrainingData/%s' % web_name
     filename_list = file_name_list(file_dir)
     df = data_merge(file_dir, filename_list)
@@ -202,7 +202,7 @@ if __name__ == '__main__':
         with tf.Session(graph=g_LSTM) as sess:
             sess.run(init)
             print('LSTM')
-            saver.restore(sess, './my_lstm_model/my_lstm_model_%s' % (web_name))
+            saver.restore(sess, './my_lstm_model/my_Rlstm_model_%s' % (web_name))
             x_drop,x_test,y_drop,y_test=train_test_split(sum_size, label, test_size=0.3, random_state=42)
             sum_size = sum_size.reshape([len(sum_size), n_steps, n_inputs])
             prob_LSTM = sess.run(probability_LSTM, feed_dict={x: sum_size})
@@ -251,7 +251,7 @@ if __name__ == '__main__':
         with tf.Session(graph=g_Slice) as sess:
             sess.run(init)
             print('Slice:')
-            saver.restore(sess, './my_nn_model/my_slice_nn_model_%s' % (web_name))
+            saver.restore(sess, './my_slice_model/my_slice_model_%s' % (web_name))
             x_drop,x_test,y_drop,y_test=train_test_split(slice_data,label, test_size=0.3, random_state=42)
             slice_data = slice_data.reshape([len(slice_data), n_inputs])
             prob_Slice = sess.run(probability, feed_dict={x: slice_data})

@@ -89,12 +89,12 @@ if __name__ == '__main__':
     # RNN各种参数定义
     web_name = 'sina-100k'
     is_train = False
-    lr = 0.003 # 学习速率
+    lr = 0.001 # 学习速率
     training_iters = 100000  # 循环次数
     batch_size = 128
     n_inputs = 1  # 代表每个特征有多少维
-    n_steps = 99  # 代表有多少需要迭代处理的特征
-    n_hidden_units = 256
+    n_steps = 100 # 代表有多少需要迭代处理的特征
+    n_hidden_units = 128
     n_classes = 3  # 二分类
 
     # 定义输入和输出的placeholder
@@ -132,8 +132,9 @@ if __name__ == '__main__':
     filename_list = file_name_list(file_dir)
     df = data_merge(file_dir, filename_list)
     # print(df['label'].value_counts())
-    sum_size = np.array(df['SumSize'].map(process_read_X_data).map(lambda l: list(reversed(l))).map(
-        lambda l: np.delete(l, -1)).values.tolist())
+    sum_size = np.array(df['SumSize'].map(process_read_X_data).values.tolist())
+    # sum_size = np.array(df['SumSize'].map(process_read_X_data).map(lambda l: list(reversed(l))).map(
+    #     lambda l: np.delete(l, -1)).values.tolist())
 
     label = OneHotEncoder(sparse=False).fit_transform(df['label'].values.reshape((-1, 1)))
     X_train, X_test, y_train, y_test = train_test_split(sum_size, label, test_size=0.3, random_state=42)

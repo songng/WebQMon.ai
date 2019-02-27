@@ -91,7 +91,7 @@ if __name__ == '__main__':
     n_hidden_units = 8 * n_inputs  # 假设隐藏单元有128个
     n_classes = 2  # 二分类
     is_train = False
-    web_name = 'amazon'
+    web_name = 'sina'
 
     x = tf.placeholder(tf.float32, [None, n_inputs])
     y = tf.placeholder(tf.float32, [None, n_classes])

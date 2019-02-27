@@ -221,7 +221,7 @@ if __name__ == '__main__':
         with tf.Session(graph=g_LSTM) as sess:
             sess.run(init)
             print('LSTM')
-            saver.restore(sess, './my_lstm_model/my_multi_lstm_model_%s' % (web_name))
+            saver.restore(sess, './my_lstm_model/my_multi_Rlstm_model_%s' % (web_name))
             sum_size = sum_size.reshape([len(sum_size), n_steps, n_inputs])
             prob_LSTM = sess.run(probability_LSTM, feed_dict={x: sum_size})
             y_pred_label = sess.run(y_pred, feed_dict={x: sum_size, y: label})
@@ -272,7 +272,7 @@ if __name__ == '__main__':
         with tf.Session(graph=g_Slice) as sess:
             sess.run(init)
             print('Slice:')
-            saver.restore(sess, './my_nn_model/my_multi_slice_nn_model_%s' % (web_name))
+            saver.restore(sess, './my_slice_model/my_multi_slice_model_%s' % (web_name))
             slice_data = slice_data.reshape([len(slice_data), n_inputs])
             prob_Slice = sess.run(probability, feed_dict={x: slice_data})
             y_pred_label = sess.run(y_pred, feed_dict={x: slice_data, y: label})

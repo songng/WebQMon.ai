@@ -1,0 +1,2 @@
+model_checkpoint_path: "my_Rlstm_model_sina"
+all_model_checkpoint_paths: "my_Rlstm_model_sina"

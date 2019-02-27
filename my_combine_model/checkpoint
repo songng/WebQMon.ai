@@ -1,0 +1,2 @@
+model_checkpoint_path: "my_combine_nn_model_amazon"
+all_model_checkpoint_paths: "my_combine_nn_model_amazon"

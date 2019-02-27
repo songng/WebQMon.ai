@@ -6,7 +6,7 @@ from sklearn.preprocessing import OneHotEncoder
 import re
 from sklearn.model_selection import train_test_split
 from train_data_merge import data_merge
-from sklearn.metrics import recall_score, precision_score, f1_score
+from sklearn.metrics import accuracy_score,recall_score, precision_score, f1_score
 import os
 import time
 
@@ -91,8 +91,8 @@ if __name__ == '__main__':
     training_iters = 100000  # 循环次数
     batch_size = 128
     n_inputs = 1  # 代表每个特征有多少维
-    n_steps = 99  # 代表有多少需要迭代处理的特征
-    n_hidden_units = 256  # 假设隐藏单元有256个
+    n_steps = 100  # 代表有多少需要迭代处理的特征
+    n_hidden_units = 256  # 假设隐藏单元有128个
     n_classes = 2  # 二分类
     is_train = False
     web_name = 'youku'
@@ -128,13 +128,11 @@ if __name__ == '__main__':
     filename_list = file_name_list(file_dir)
     df = data_merge(file_dir, filename_list)
     # print(df['label'].value_counts())
-    # WEBQMON
-    # sum_size = np.array(df['SumSize'].map(process_read_X_data).values.tolist())
-    # R-WEBQMON
-    # sum_size = np.array(df['SumSize'].map(process_read_X_data).map(lambda l: list(reversed(l))).values.tolist())
-    # R-WEBQMON 2.0
-    sum_size = np.array(df['SumSize'].map(process_read_X_data).map(lambda l: list(reversed(l))).map(
-        lambda l: np.delete(l, -1)).values.tolist())
+    # LSTM
+    sum_size = np.array(df['SumSize'].map(process_read_X_data).values.tolist())
+    # R-LSTM 2.0
+    # sum_size = np.array(df['SumSize'].map(process_read_X_data).map(lambda l: list(reversed(l))).map(
+    #     lambda l: np.delete(l, -1)).values.tolist())
 
     label = OneHotEncoder(sparse=False).fit_transform(df['label'].values.reshape((-1, 1)))
     X_train, X_test, y_train, y_test = train_test_split(sum_size, label, test_size=0.3, random_state=42)
@@ -166,7 +164,8 @@ if __name__ == '__main__':
             X_test = X_test.reshape([num_pred, n_steps, n_inputs])
             y_pred_label = sess.run(y_pred, feed_dict={x: X_test, y: y_test})
             y_true_label = sess.run(y_true, feed_dict={x: X_test, y: y_test})
-            print('accuracy\t', sess.run(accuracy, feed_dict={x: X_test, y: y_test}))
+            # print('accuracy\t', sess.run(accuracy, feed_dict={x: X_test, y: y_test}))
+            print('accuracy\t', accuracy_score(y_true_label, y_pred_label))
             print('precision\t', precision_score(y_true_label, y_pred_label))
             print('recall\t', recall_score(y_true_label, y_pred_label))
             print('f1 score\t', f1_score(y_true_label, y_pred_label))
