@@ -54,3 +54,6 @@ The parameters of the trained LSTM and R-LSTM model. You can load the parameters
 The parameters of the trained NN model. You can load the parameters from this folder and predict the AFT directly.
 # my_slice_model
 The parameters of the trained Slice model. You can load the parameters from this folder and predict the AFT directly.
+# How to run
+First， you need to put all the files in the “Algorithm” folder in the same directory as the other folders.
+Then, if you installed the dependencies successfully, you can train or test each model by each model.py.
